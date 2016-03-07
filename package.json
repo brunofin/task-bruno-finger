@@ -1,0 +1,44 @@
+{
+  "version": "1.0.0",
+  "private": true,
+  "name": "task-bruno-finger",
+  "description": "A task assigned to Bruno Finger",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/bruno-finger12/task-bruno-finger.git"
+  },
+
+  "devDependencies": {
+    "bower": "1.7.7",
+    "virtualenv": "0.2.3",
+
+    "google-closure-compiler": "20160125.0.0",
+
+    "gulp": "3.9.0",
+    "gulp-util": "3.0.7",
+    "gulp-sass": "2.1.1",
+    "gulp-jsbeautifier": "1.0.1",
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-inject": "3.0.0",
+    "gulp-rename": "1.2.2",
+    "gulp-clean": "0.3.1",
+    "gulp-closure-compiler": "0.3.0"
+  },
+
+  "virtualenv": {
+    "version": "15.0.0"
+  },
+
+  "scripts": {
+    "preinstall": "npm update",
+    "postinstall": "bower install && virtualenv-postinstall",
+
+    "prestart": "npm install",
+    "start": "gulp",
+
+    "runserver": "gulp runserver",
+
+    "predeploy": "npm install",
+    "deploy": "gulp deploy"
+  }
+}
