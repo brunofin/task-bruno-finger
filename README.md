@@ -1,5 +1,6 @@
 Dependencies:
 
+Git;
 Python;
 NodeJS and NPM;
 Java (for Google Closure Compiler).
