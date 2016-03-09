@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="CloudSystem">
+<html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -14,11 +14,12 @@
     <!-- endinject -->
 
   </head>
-  <body ng-controller="HelloWorld" layout="row">
+  <body ng-app="Cloud" layout="row">
 
     <div ng-if="false">
       <h1>Loading, please wait...</h1>
     </div>
-    <ng-view></ng-view>
+
+    <cloud-manager></cloud-manager>
   </body>
 </html>
