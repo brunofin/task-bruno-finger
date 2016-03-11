@@ -1,8 +1,8 @@
-*.pyc
 node_modules
 bower_components
-.node-virtualenv
-*.sqlite3
 npm-debug.log
 *.min.*
 index.html
+!dist/app.min.js
+!dist/index.html
+!dist/styles.min.css

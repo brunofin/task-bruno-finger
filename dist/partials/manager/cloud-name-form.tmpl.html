@@ -1,0 +1,14 @@
+<md-input-container>
+  <label>New name</label>
+  <input ng-model="newName">
+</md-input-container>
+
+<md-button class="md-primary"
+    ng-disabled="!newName"
+    ng-click="save()">
+  <span>OK</span>
+</md-button>
+
+<md-button ng-click="cancel()">
+  <span>Cancel</span>
+</md-button>

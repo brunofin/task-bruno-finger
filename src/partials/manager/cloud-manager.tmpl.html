@@ -1,0 +1,151 @@
+<md-toolbar class="md-whiteframe-1dp">
+
+  <div class="md-toolbar-tools">
+    <h2 flex="15">
+      <md-icon md-svg-src="/img/icons/ic_cloud_done_white_24px.svg" aria-label="cloud icon"></md-icon>
+      <span>Cloud system</span>
+    </h2>
+
+    <md-button aria-label="Back"
+        ng-show="currentFolder.path() !== null"
+        ng-click="switchToFolder(currentFolder.path())">
+      <md-icon md-svg-src="/img/icons/ic_keyboard_arrow_left_white_24px.svg"></md-icon>
+      <md-tooltip>Back to previous folder</md-tooltip>
+    </md-button>
+
+    <md-button aria-label="Folder name">
+      <md-icon md-svg-src="/img/icons/ic_folder_open_white_24px.svg"></md-icon>
+      <span>{{ currentFolder.name() }}</span>
+      <md-tooltip>Current folder</md-tooltip>
+    </md-button>
+
+    <md-button aria-label="New folder"
+        ng-click="createFolder()"
+        ng-disabled="status.creating">
+      <md-icon md-svg-src="/img/icons/ic_create_new_folder_white_24px.svg"></md-icon>
+      <span>New folder</span>
+    </md-button>
+    <span flex></span>
+
+    <md-button aria-label="Rename"
+        ng-click="rename($ev, selectedItems)"
+        ng-disabled="renameDisabled()">
+      <md-icon md-svg-src="/img/icons/ic_mode_edit_white_24px.svg"></md-icon>
+      <span>Rename</span>
+      <md-tooltip>Enable renaming mode on selected items</md-tooltip>
+    </md-button>
+
+    <md-button aria-label="Delete"
+        ng-click="delete($ev, selectedItems)"
+        ng-disabled="selectedItems.length === 0">
+      <md-icon md-svg-src="/img/icons/ic_delete_white_24px.svg"></md-icon>
+      <span>Delete</span>
+      <md-tooltip>Delete selected items</md-tooltip>
+    </md-button>
+    <span flex="20"></span>
+  </div>
+</md-toolbar>
+
+<div layout="row"
+    flex>
+
+  <div flex="15"
+      class="md-whiteframe-2dp"
+      layout="column"
+      layout-align="start center">
+    <md-list class="md-dense">
+      <md-list-item class="md-1-line">
+        <img src="/img/icons/ic_home_black_24dp_2x.png" />
+
+        <div class="md-list-item-text">
+          <h3>My files</h3>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-1-line md-dense">
+        <img src="/img/icons/ic_folder_shared_black_24dp_2x.png" />
+
+        <div class="md-list-item-text">
+          <h3>Shared</h3>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-1-line md-dense">
+        <img src="/img/icons/ic_stars_black_24dp_2x.png" />
+
+        <div class="md-list-item-text">
+          <h3>Starred</h3>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-1-line md-dense">
+        <img src="/img/icons/ic_recent_actors_black_24dp_2x.png" />
+
+        <div class="md-list-item-text">
+          <h3>Recent</h3>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-1-line md-dense">
+        <img src="/img/icons/ic_delete_black_24dp_2x.png" />
+
+        <div class="md-list-item-text">
+          <h3>Trash</h3>
+        </div>
+      </md-list-item>
+    </md-list>
+    <md-divider></md-divider>
+    <p>20 MB of 12 TB used</p>
+  </div>
+
+  <md-content layout-margin
+      flex
+      class="md-whiteframe-10dp">
+    <md-table-container>
+      <table md-table
+          md-row-select
+          ng-model="selectedItems">
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Name</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row
+              ng-if="status.creating">
+            <td md-cell>
+              <cloud-new-folder-form creating="status"
+                  current-folder="currentFolder"
+                  content="content"></cloud-new-folder-form>
+            </td>
+          </tr>
+          <tr md-row
+              md-select="item"
+              md-select-id="{{ item.id() }}"
+              ng-dblclick="switchToFolder(item)"
+              ng-repeat="item in content">
+            <td md-cell>
+              <cloud-item-icon item="item"
+                  ng-hide="item.editing"></cloud-item-icon>
+              <span ng-hide="item.editing">{{ item.name() }}</span>
+              <cloud-name-form ng-if="item.editing"
+                  item="item"></cloud-name-form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-content>
+
+  <md-content flex="20"
+      class="md-whiteframe-2dp"
+      layout="column">
+    <md-toolbar class="md-hue-3">
+      <h1 class="md-toolbar-tools">Details</h1>
+    </md-toolbar>
+
+    <md-content layout-padding>
+      <p> {{ selectedItems.length }} item<span ng-if="selectedItems.length !== 1">s</span> selected.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </md-content>
+  </md-content>
+</div>

@@ -1,0 +1,20 @@
+cloud-item-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+
+.md-button:disabled {
+  cursor: not-allowed;
+}
+
+cloud-name-form,
+cloud-new-folder-form {
+  max-width: 60%;
+  max-height: 46px;
+  md-input-container {
+    margin: 0px;
+    position: relative;
+    top: 10px;
+  }
+}
